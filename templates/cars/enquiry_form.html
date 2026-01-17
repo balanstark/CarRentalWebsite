@@ -1,0 +1,41 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="jumbotron bg-light shadow-sm p-4 rounded">
+        {% if enquiry %}
+        <div class="text-center">
+            <h2 class="text-success">👍 Enquiry Submitted</h2>
+            <p class="lead">Thank you! We’ll get back to you shortly.</p>
+            <a href="{% url 'home' %}" class="btn btn-outline-primary mt-3">🏠 Back to Home</a>
+        </div>
+        {% else %}
+        <h2 class="text-center text-primary mb-4">📩 Enquiry Form</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" value="{{ form.username.value }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" value="{{ form1.phone.value }}" readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" value="{{ form.email.value }}" readonly>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="concern" class="form-label">Your Concern</label>
+                <textarea name="concern" id="concern" class="form-control" rows="5" placeholder="Describe your concern here...">{{ form2.concern.value }}</textarea>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success btn-lg px-5">Submit Enquiry</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

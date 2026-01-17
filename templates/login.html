@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+
+<div class="bgcolor-f8f9fa d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="card shadow-lg p-4" style="width: 25rem;">
+        <h2 class="text-center mb-4">Login Here</h2>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div class="mb-3 text-end">
+                    <a href="{% url 'password_reset' %}" class="text-decoration-none">Forgot password?</a>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

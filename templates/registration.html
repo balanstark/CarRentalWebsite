@@ -1,0 +1,90 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+            {% if registered %}
+                <div class="card card-body">
+                    <h1>Thank You For Registration</h1>
+                    <p>Please proceed to <a href="login">Login</a></p>
+                </div>
+            {% else %}
+                <h1 style="text-align: center;">Registration Form</h1>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-body">
+                                {{ form.username | as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-body">
+                                {{ form.email | as_crispy_field }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.phone | as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.door_no | as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.landmark | as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.street | as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.city | as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.state | as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form1.pincode | as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-body">
+                                    {{ form.password | as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {{ form1.userpic | as_crispy_field }}
+                        </div>
+                        {{ form1.captcha }}
+                        <br>
+                        <input type="submit" value="SUBMIT" class="btn btn-primary">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 style="text-align: center;">Product Details</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>Product Name</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>{{product.product_name}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>Color</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>{{product.color}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>Seat Capacity</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>{{product.seat_capacity}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>Fuel Type</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>{{product.fuel_type}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>Price</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card card-body">
+                        <h4>₹ {{product.price}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h1 style="text-align: center;"> Product Interior Images</h1>
+        <div class="row">
+            {% for int in product.pii.all %}
+                <div class="col-md-4">
+                    <div class="card card-body">
+                        {% if int.interior %}
+                            <img src="{{ int.interior.url }}" alt="No Image" class="img-fluid mb-3"style="height:300px; width:100%; object-fit: contain background:#f8f9fa; border-radius:8px;">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <h1 style="text-align: center;"> Product Exterior Images</h1>
+        <div class="row">
+            {% for ext in product.pei.all %}
+                <div class="col-md-4">
+                    <div class="card card-body">
+                        {% if ext.exterior %}
+                            <img src="{{ ext.exterior.url }}" alt="No Image" class="img-fluid mb-3"style="height:300px; width:100%; object-fit: contain background:#f8f9fa; border-radius:8px;">
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary mx-auto d-flex"><a href="{% url 'final_price' product.id %}" style="text-decoration: none; color:white">Calculate Final Price</a>
+            </button>
+            <button type="button" class="btn btn-primary mx-auto d-flex"><a href="{% url 'book_test_drive' product.id %}" style="text-decoration: none; color:white">Book a Test Drive</a>
+            </button>
+            <button type="button" class="btn btn-primary mx-auto d-flex"><a href="{% url 'enquiry_form' product.id %}" style="text-decoration: none; color:white">Make an Enquiry</a>
+            </button>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            {% if submit %}
+            <!-- Success message -->
+            <div class="card shadow-lg border-success">
+                <div class="card-body text-center">
+                    <h1 class="text-success mb-3">✅ Thank You!</h1>
+                    <p class="lead">You booked a test drive on <strong>{{date}}</strong> at <strong>{{time}}</strong>.</p>
+                    <a href="{% url 'home' %}" class="btn btn-outline-success mt-3">Return to Home</a>
+                </div>
+            </div>
+
+            {% else %}
+            <!-- Booking form -->
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">🚗 Book Your Test Drive</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="p-3">
+                        {% csrf_token %}
+                        <!-- Product details -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Product Name</label>
+                            <input type="text" class="form-control" value="{{product.product_name}}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">User Name</label>
+                            <input type="text" class="form-control" value="{{user.username}}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <input type="email" class="form-control" value="{{user.email}}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Phone Number</label>
+                            <input type="text" class="form-control" value="{{user.userdetails.phone}}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ex-Showroom Price</label>
+                            <input type="text" class="form-control" value="₹ {{product.price}}" readonly>
+                        </div>
+
+                        <!-- Date field -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Choose Date</label>
+                            {{ form3.date }}
+                        </div>
+
+                        <!-- Time field -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Choose Time Slot</label>
+                            {{ form3.time }}
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success btn-lg px-5">Book Your Slot</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

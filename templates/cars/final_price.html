@@ -1,0 +1,42 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+  <div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white text-center">
+      <h2 class="mb-0">🚘 Your Final Price</h2>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>🏷️ Ex-Showroom Price</span>
+        <span class="fw-bold text-success">₹ {{ shw_price }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>🛣️ Road Tax</span>
+        <span class="fw-bold text-success">₹ {{ road_tax }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>📋 RTO Charges</span>
+        <span class="fw-bold text-success">₹ {{ rto }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>💰 GST</span>
+        <span class="fw-bold text-success">₹ {{ gst }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>🛡️ Insurance</span>
+        <span class="fw-bold text-success">₹ {{ insurance }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>🧾 Miscellaneous</span>
+        <span class="fw-bold text-success">₹ {{ miscellaneous }}</span>
+      </li>
+    </ul>
+    <div class="card-footer bg-light text-center">
+      <h4 class="text-primary">💵 Tentative Price: <span class="fw-bold text-success">₹ {{ total_price }}</span></h4>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'rental/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                {% if form.carimg %}
+                    <img src="{{ form.carimg.url }}" alt="{{ form.car_name }}" class="card-img-top rounded-top-4"style="height: 350px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4 text-primary fw-bold">
+                        {{ form.car_name }}
+                    </h2>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Company:</strong> {{ form.company }}</p>
+                            <p><strong>Color:</strong> {{ form.color }}</p>
+                            <p><strong>Fuel Type:</strong> {{ form.fuel_type }}</p>
+                            <p><strong>Transmission:</strong> {{ form.transmission_type }}</p>
+                            <p><strong>Mileage:</strong> {{ form.mileage }} kmpl</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Seat Capacity:</strong> {{ form.seat_capacity }}</p>
+                            <p><strong>Total Km Driven:</strong> {{ form.total_km_driven }}</p>
+                            <p><strong>Amenities:</strong> {{ form.amminities }}</p>
+                            <p><strong>Bootspace:</strong> {{ form.bootspace }}</p>
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        <span class="badge bg-warning text-dark fs-6">
+                            ⭐ Rating: {{ form.rating }}/5
+                        </span>
+                    </p>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'rent_details' form.id %}" class="btn btn-outline-primary px-4 rounded-pill">
+                            Checkout Rent Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

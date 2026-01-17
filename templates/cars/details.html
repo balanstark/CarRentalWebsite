@@ -1,0 +1,41 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>{{ company.name }} company details</h1>
+        <p>CEO : {{company.ceo}}</p>
+        <p>Eatablished Year : {{company.est_year}}</p>
+        <p>Origin : {{company.origin}}</p>
+        <hr>
+        <h1>List of {{company.name}} products</h1>
+        <br>
+        <div class="row">
+            {% for prod in company.companies.all %}
+                <div class="col-md-4">
+                    <div class="card card-body text-center w-100" style="min-height: 400px;">
+                        {% if prod.product_images %}
+                            <img src="{{ prod.product_images.url }}" alt="no image" class="img-fluid mb-3"style="height:300px; width:100%; object-fit: contain background:#f8f9fa; border-radius:8px;">
+                        {% endif %}
+                        <div class="card-body">
+                            <a href="{% url 'interior_exterior_img' prod.id %}" class="btn btn-secondary">{{ prod.product_name }}</a>
+                            <p>Color: {{ prod.color }}</p>
+                            <p>Seats: {{ prod.seat_capacity }}</p>
+                            <p>Fuel: {{ prod.fuel_type }}</p>
+                            <p>CC: {{ prod.cc }}</p>
+                            <p>Mileage: {{ prod.mileage }} km/l</p>
+                            <p>Price: ₹{{ prod.price }}</p>
+                            <a href="{% url 'emi' prod.id %}"  class="btn btn-primary float-end " ><i class="bi bi-bank"></i></a>
+                        </div> 
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

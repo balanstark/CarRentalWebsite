@@ -1,0 +1,26 @@
+{% extends 'cars/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 style="text-align: center;">List of Companies</h1>
+        <div class="row">
+            {% for i in comp %}
+            <div class="col-md-4">
+                <div class="card card-body text-center w-100" style="min-height: 400px;">
+                    {% if i.logo %}
+                        <img src="{{i.logo.url}}" alt="no logo" class="img-fluid mb-3"style="height:300px; width:100%; object-fit: contain background:#f8f9fa; border-radius:8px;">
+                    {% endif %}
+                    <h3>Company Name : {{ i.name }}</h3>
+                    <h3>CEO : {{ i.ceo }}</h3>
+                    <h3>Established Year : {{ i.est_year }}</h3>
+                    <h3 class="card-text"><a href="{{i.id}}"  class="btn btn-primary mt-auto">{{i.name}}</a></h3>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

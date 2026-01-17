@@ -1,0 +1,54 @@
+{% extends 'navbar.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  .carousel-inner {
+    height: 700px;
+    object-fit: cover;
+  }
+  button{
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 style="text-align: center;">Welcome To Home Page</h1>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="height: 80vh;">
+                <img src="{% static 'images/car1.jpeg' %}" class="d-block w-100 h-100" alt="no image">
+                </div>
+                <div class="carousel-item" style="height: 80vh;">
+                <img src="{% static 'images/car2.jpeg' %}" class="d-block w-100 h-100" alt="no image">
+                </div>
+                <div class="carousel-item" style="height: 80vh;">
+                <img src="{% static 'images/car3.jpeg' %}" class="d-block w-100 h-100" alt="no image">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary mx-auto d-flex"><a href="{% url 'comp' %}" style="text-decoration: none; color:white">Buy a  Car</a>
+            </button>
+            <button type="button" class="btn btn-primary mx-auto d-flex"><a href="{% url 'rentalcars' %}" style="text-decoration: none; color:white">Rent a Car</a>
+            </button>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock %}
+
+{{ redirect_to_login_immediately }}

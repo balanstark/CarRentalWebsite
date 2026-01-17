@@ -1,0 +1,36 @@
+{% extends 'rental/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 style="text-align: center;">Choose Car For Rent</h1>
+
+        <p class="d-inline-flex gap-1">
+            <a class="btn btn-primary" href="?seat=5">5 Seater</a>
+            <a class="btn btn-primary" href="?seat=7">7 Seater</a>
+        </p>
+        <hr>
+        <div class="row">
+            {% if cars %}
+                {% for car in cars %}
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            {% if car.carimg %}
+                                <img src="{{ car.carimg.url }}" alt="{{ car.car_name }}" class="card-img-top"style="height:300px; width:100%; object-fit:contain; background:#f8f9fa; border-radius:8px;">
+                            {% endif %}
+                            <div class="card card-body">
+                                <a href="{% url 'details' car.id %}" class="btn btn-primary">{{ car.car_name }}</a>
+                                <p class="card-text">Company: {{ car.company }}</p>
+                                <p class="card-text">Total Km Driven: {{ car.total_km_driven }}</p>
+                                <p class="card-text">Rating: {{ car.rating }}/5</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align:center;">No cars selected. Please choose 5 or 7 seater.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

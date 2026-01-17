@@ -1,0 +1,49 @@
+{% extends 'rental/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">🚗 Final Rent Price Calculation</h3>
+                </div>
+
+                <div class="card-body">
+                    {% if final_price %}
+                        <div class="alert alert-success text-center py-4">
+                            <h2 class="display-5">Final Price: ₹{{ final_price }}</h2>
+                        </div>
+                    {% endif %}
+
+                    <h5 class="mb-3">Car Details</h5>
+                    <ul class="list-group mb-4">
+                        <li class="list-group-item"><strong>Car Name:</strong> {{ form.car_name }}</li>
+                        <li class="list-group-item"><strong>Total Km Allowed per Day:</strong> 300 km</li>
+                        <li class="list-group-item"><strong>Amount per Km:</strong> ₹{{ rupee }}</li>
+                        <li class="list-group-item"><strong>Mileage:</strong> {{ form.mileage }} km/l</li>
+                        <li class="list-group-item"><strong>Odometer Reading at Start:</strong> {{ odometer }} km</li>
+                    </ul>
+
+                    <form method="post" class="mb-3">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Number of Rental Days</label>
+                            {{ form1.total_no_of_days }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Current Odometer Reading</label>
+                            {{ form1.km_drive_now }}
+                        </div>
+                        <div class="d-grid">
+                            <input type="submit" value="Check Final Price" class="btn btn-success btn-lg">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
